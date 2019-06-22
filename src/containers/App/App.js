@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { SearchBar } from "./components/Searchbar";
-import { WeatherForecast } from "./components/WeatherForecast";
-import { UserActions } from "./components/UserActions";
-import "./styles/scss/main.scss";
+import { SearchBar } from "../../components/Searchbar";
+import { WeatherForecast } from "../../components/WeatherForecast";
+import { UserActions } from "../../components/UserActions";
+import "../../styles/scss/main.scss";
 
 function App() {
     return (
@@ -23,7 +23,10 @@ function App() {
 const mapStateToProps = store => {
     console.log(store); // посмотрим, что же у нас в store?
     return {
-        user: store.user
+        city: store.search.city,
+        isFavourite: store.search.isFavourite,
+        unit: store.unit,
+        color: store.color
     };
 };
 
