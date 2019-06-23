@@ -1,14 +1,19 @@
 import React, { Component } from "react";
+import Autocomplete from "react-google-autocomplete";
 
 export class SearchBar extends Component {
+    performSearch(place) {
+        console.log(place);
+    }
+
     render() {
         return (
             <div className="search-block">
                 <button className="add-to-favourite" />
-                <input
-                    type="text"
+                <Autocomplete
                     className="main-search-input"
-                    placeholder="Location"
+                    onPlaceSelected={this.performSearch}
+                    autoFocus
                 />
                 <select className="temperature-units">
                     <option value="Celsius">°C</option>

@@ -21,7 +21,7 @@ function App() {
 }
 
 const mapStateToProps = store => {
-    console.log(store); // посмотрим, что же у нас в store?
+    console.log(store);
     return {
         city: store.search.city,
         isFavourite: store.search.isFavourite,
