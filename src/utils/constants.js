@@ -7,6 +7,10 @@ export const weatherForecastURLString =
     "https://api.openweathermap.org/data/2.5/forecast?q=";
 export const apiKey = "c1bfe9b98646ae15af74164518f99538";
 
+export const scrollableBlockWrapClassFavourite = "user-activity-list-favourite";
+
+export const scrollableBlockWrapClassHistory = "user-activity-list-history";
+
 export const formatValue = value => (value ? Math.round(value) : "");
 
 export const checkProperty = property => (property ? property : "");
@@ -167,5 +171,12 @@ export const putItemToLocalStorage = (key, list) => {
     localStorage.setItem(key, JSON.stringify(list));
 };
 
-export const scrollableBlockWrapClassFavourite = "user-activity-list-favourite";
-export const scrollableBlockWrapClassHistory = "user-activity-list-history";
+export const checkResponse = response => {
+    if (response.data.status === "ok") {
+        return true;
+    } else if (response.data.message) {
+        const message = response.data.message.split("_").join(" ");
+        throw new Error(message);
+    }
+    throw new Error("Something wrong");
+};

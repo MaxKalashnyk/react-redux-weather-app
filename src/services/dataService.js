@@ -1,32 +1,22 @@
-import { apiKey } from "./constants";
-import { currentWeaterURLString } from "./constants";
-import { weatherForecastURLString } from "./constants";
+import { apiKey } from "../utils/constants";
+import { currentWeaterURLString } from "../utils/constants";
+import { weatherForecastURLString } from "../utils/constants";
 
-class WeatherDataService {
-    constructor() {
-        this.getWeatherData = this.getWeatherData.bind(this);
-    }
-
+export class HttpService {
     getWeatherURLS(url, city) {
         return `${url}${city}&appid=${apiKey}&units=metric`;
     }
 
-    getWeather(urls, callback) {
-        return Promise.all(urls.map(u => fetch(u)))
-            .then(responses => Promise.all(responses.map(res => res.json())))
-            .then(result => {
-                callback(result);
-            });
-    }
-
-    getWeatherData(cityName, callBack) {
+    getWeatherData(city) {
         const urlsArray = [
-            this.getWeatherURLS(currentWeaterURLString, cityName),
-            this.getWeatherURLS(weatherForecastURLString, cityName)
+            this.getWeatherURLS(currentWeaterURLString, city),
+            this.getWeatherURLS(weatherForecastURLString, city)
         ];
 
-        this.getWeather(urlsArray, callBack);
+        return Promise.all(urlsArray.map(u => fetch(u))).then(responses =>
+            Promise.all(responses.map(res => res.json()))
+        );
     }
 }
 
-export default new WeatherDataService();
+export default HttpService;

@@ -4,6 +4,7 @@ import { FavouritesList } from "../FavouritesList";
 
 export class UserActions extends Component {
     render() {
+
         return (
             <div className="user-activity-wrap">
                 <FavouritesList></FavouritesList>

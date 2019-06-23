@@ -1,8 +1,13 @@
 export const initialState = {
-    city: "Kyiv",
+    place: "Kyiv",
     isFavourite: false
 };
 
-export function searchReducer(state = initialState) {
-    return state;
+export function searchReducer(state = initialState, action) {
+    switch (action.type) {
+        case "SET_PLACE":
+            return { ...state, place: action.payload };
+        default:
+            return state;
+    }
 }
