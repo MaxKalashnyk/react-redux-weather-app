@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/react-redux-weather-app/static/css/main.511b2b18.chunk.css",
+    "main.js": "/react-redux-weather-app/static/js/main.4c3f6e59.chunk.js",
+    "main.js.map": "/react-redux-weather-app/static/js/main.4c3f6e59.chunk.js.map",
+    "runtime~main.js": "/react-redux-weather-app/static/js/runtime~main.30a7341a.js",
+    "runtime~main.js.map": "/react-redux-weather-app/static/js/runtime~main.30a7341a.js.map",
+    "static/js/2.d7993b35.chunk.js": "/react-redux-weather-app/static/js/2.d7993b35.chunk.js",
+    "static/js/2.d7993b35.chunk.js.map": "/react-redux-weather-app/static/js/2.d7993b35.chunk.js.map",
+    "index.html": "/react-redux-weather-app/index.html",
+    "precache-manifest.aaf49c42406f6df60c0472bef5a0a789.js": "/react-redux-weather-app/precache-manifest.aaf49c42406f6df60c0472bef5a0a789.js",
+    "service-worker.js": "/react-redux-weather-app/service-worker.js",
+    "static/css/main.511b2b18.chunk.css.map": "/react-redux-weather-app/static/css/main.511b2b18.chunk.css.map",
+    "static/media/main.scss": "/react-redux-weather-app/static/media/wind.7ee97d68.svg"
+  }
+}
