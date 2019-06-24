@@ -3,7 +3,7 @@ export const initialState = {
     isFavourite: false
 };
 
-export function searchReducer(state = initialState, action) {
+export function placeReducer(state = initialState, action) {
     switch (action.type) {
         case "SET_PLACE":
             return { ...state, place: action.payload };

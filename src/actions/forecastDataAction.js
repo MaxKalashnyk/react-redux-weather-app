@@ -14,10 +14,10 @@ export const handleForecastData = city => dispatch => {
     httpService
         .getWeatherData(city)
         .then(res => {
-            const userInfo = res;
+            const data = res;
             dispatch({
                 type: REQUEST_SUCCESS,
-                payload: userInfo
+                payload: data
             });
         })
         .catch(err => {

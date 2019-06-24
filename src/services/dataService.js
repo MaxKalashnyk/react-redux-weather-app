@@ -17,6 +17,14 @@ export class HttpService {
             Promise.all(responses.map(res => res.json()))
         );
     }
+
+    getForecast(url, city) {
+        const requestURL = `${url}${city}&appid=${apiKey}&units=metric`;
+
+        return fetch(requestURL)
+            .then(response => response.json())
+            .catch(error => console.error(error));
+    }
 }
 
 export default HttpService;

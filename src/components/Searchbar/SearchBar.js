@@ -9,16 +9,16 @@ export class SearchBar extends Component {
     }
 
     performSearch(place) {
-        console.log(place);
+        // console.log(place);
         const formattedPlaceName = place.formatted_address.split(",")[0];
-        console.log(formattedPlaceName);
-        // this.props.setPlace(formattedPlaceName);
+        // console.log(formattedPlaceName);
+        this.props.place(formattedPlaceName);
         this.props.handleForecastData(formattedPlaceName);
         this.inputRef.current.refs.input.value = "";
     }
 
     render() {
-        console.log(this.props);
+        // console.log(this.props);
 
         return (
             <div className="search-block">
@@ -41,5 +41,5 @@ export class SearchBar extends Component {
 export default SearchBar;
 
 SearchBar.propTypes = {
-    handleForecastData: PropTypes.func.isRequired // добавили новое свойство в propTypes
+    handleForecastData: PropTypes.func.isRequired
 };

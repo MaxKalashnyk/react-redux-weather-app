@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export class CurrentForecast extends Component {
     render() {
+        console.log("forecastData", this.props.forecastData);
+
         return (
             <div className="forecast-current">
                 <div className="city-name">Gdansk, Poland</div>
@@ -38,3 +41,7 @@ export class CurrentForecast extends Component {
 }
 
 export default CurrentForecast;
+
+CurrentForecast.propTypes = {
+    forecastData: PropTypes.object
+};
