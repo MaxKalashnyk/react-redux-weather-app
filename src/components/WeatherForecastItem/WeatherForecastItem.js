@@ -9,12 +9,24 @@ export class WeatherForecastItem extends Component {
     render() {
         console.log("itemForecast", this.props);
 
+        const { place, forecastData } = this.props;
+
+        const setIconClassName = `day-forecast-weather ${generateIconClass(
+            forecastData.weather[0].icon
+        )}`;
+
         return (
             <div className="forecast-nearest-day-item">
-                <h3 className="day-title">03/03</h3>
-                <div className="day-forecast-icon" />
-                <div className="day-forecast-temp">4°</div>
-                <div className="day-forecast-weather day-forecast-weather-sunny" />
+                <h3 className="day-title">
+                    {formatDateValue(forecastData.dt_txt)}
+                </h3>
+                <div className="day-forecast-dayname">
+                    {getDayFromDateString(forecastData.dt, "short")}
+                </div>
+                <div className="day-forecast-temp">
+                    {convertTemperatureUnits(forecastData.main.temp, "C")}
+                </div>
+                <div className={setIconClassName} />
             </div>
         );
     }

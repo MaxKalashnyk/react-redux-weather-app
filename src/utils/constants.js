@@ -153,8 +153,8 @@ export const convertTemperatureUnits = (value, units) => {
     }
 
     return units === "C"
-        ? `${Math.round(value)} &deg;C`
-        : `${Math.round(value * 1.8 + 32)} &deg;F`;
+        ? `${Math.round(value)} °C`
+        : `${Math.round(value * 1.8 + 32)} °F`;
 };
 
 export const convertWindUnits = (value, units) => {

@@ -18,9 +18,20 @@ export class WeatherForecast extends Component {
 
     renderTemplate() {
         const { data, isFetching, error, place } = this.props;
+
+        const renderCurrentForecast = () =>
+            data ? (
+                <CurrentForecast
+                    forecastData={data ? data[0] : null}
+                ></CurrentForecast>
+            ) : (
+                ""
+            );
+
         const finalDaysForecastList = data
             ? this.createSortedList(data[1].list)
             : null;
+
         const weatherForecastItemsList = finalDaysForecastList
             ? finalDaysForecastList.map(item => {
                   return (
@@ -42,9 +53,7 @@ export class WeatherForecast extends Component {
         } else {
             return (
                 <div className="search-results-container">
-                    <CurrentForecast
-                        forecastData={data ? data[0] : null}
-                    ></CurrentForecast>
+                    {renderCurrentForecast()}
                     <div className="forecast-nearest-days">
                         {weatherForecastItemsList}
                     </div>
