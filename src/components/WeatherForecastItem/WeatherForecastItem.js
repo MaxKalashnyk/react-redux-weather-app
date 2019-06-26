@@ -6,6 +6,10 @@ import { convertTemperatureUnits } from "../../utils/constants";
 import PropTypes from "prop-types";
 
 export class WeatherForecastItem extends Component {
+    updateCurrentWeather(data) {
+        this.props.updateHandler(data);
+    }
+
     render() {
         console.log("itemForecast", this.props);
 
@@ -16,7 +20,10 @@ export class WeatherForecastItem extends Component {
         )}`;
 
         return (
-            <div className="forecast-nearest-day-item">
+            <div
+                className="forecast-nearest-day-item"
+                onClick={() => this.updateCurrentWeather(forecastData)}
+            >
                 <h3 className="day-title">
                     {formatDateValue(forecastData.dt_txt)}
                 </h3>

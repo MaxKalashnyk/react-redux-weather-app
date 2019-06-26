@@ -16,6 +16,10 @@ export class WeatherForecast extends Component {
         return hoursForecastList;
     }
 
+    updateHandler(data) {
+        console.log(data);
+    }
+
     renderTemplate() {
         const { data, isFetching, error, place } = this.props;
 
@@ -39,6 +43,7 @@ export class WeatherForecast extends Component {
                           forecastData={item}
                           place={place}
                           key={uuid.v4()}
+                          updateHandler={this.updateHandler}
                       ></WeatherForecastItem>
                   );
               })
