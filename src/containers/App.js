@@ -5,6 +5,7 @@ import { WeatherForecast } from "../components/WeatherForecast";
 import { UserActions } from "../components/UserActions";
 import { setPlace } from "../actions/placeAction";
 import { handleForecastData } from "../actions/forecastDataAction";
+import { updateCurrentForecast } from "../actions/updateCurrentForecast";
 import "../styles/scss/main.scss";
 
 class App extends Component {
@@ -13,10 +14,11 @@ class App extends Component {
             setPlaceAction,
             getForecastDataAction,
             forecastData,
-            place
+            place,
+            setCurrentForecast
         } = this.props;
 
-        // console.log(this.props);
+        console.log(this.props);
 
         return (
             <div className="App">
@@ -25,11 +27,11 @@ class App extends Component {
                         <h1 className="main-title">Weather application</h1>
                         <SearchBar
                             handleForecastData={getForecastDataAction}
+                            handleCurrentForecastData={setCurrentForecast}
                             place={setPlaceAction}
                         ></SearchBar>
                         <WeatherForecast
                             data={forecastData.data}
-                            error={forecastData.error}
                             isFetching={forecastData.isFetching}
                             place={place}
                         ></WeatherForecast>
@@ -42,7 +44,7 @@ class App extends Component {
 }
 
 const mapStateToProps = store => {
-    console.log(store);
+    // console.log(store);
     return {
         // isFavourite: store.search.isFavourite,
         // unit: store.unit,
@@ -55,7 +57,8 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
     return {
         setPlaceAction: place => dispatch(setPlace(place)),
-        getForecastDataAction: city => dispatch(handleForecastData(city))
+        getForecastDataAction: city => dispatch(handleForecastData(city)),
+        setCurrentForecast: data => dispatch(updateCurrentForecast(data))
     };
 };
 

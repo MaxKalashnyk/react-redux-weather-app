@@ -14,6 +14,7 @@ export class SearchBar extends Component {
         // console.log(formattedPlaceName);
         this.props.place(formattedPlaceName);
         this.props.handleForecastData(formattedPlaceName);
+        this.props.handleCurrentForecastData(null);
         this.inputRef.current.refs.input.value = "";
     }
 
@@ -41,5 +42,6 @@ export class SearchBar extends Component {
 export default SearchBar;
 
 SearchBar.propTypes = {
-    handleForecastData: PropTypes.func.isRequired
+    handleForecastData: PropTypes.func.isRequired,
+    handleCurrentForecastData: PropTypes.func.isRequired
 };

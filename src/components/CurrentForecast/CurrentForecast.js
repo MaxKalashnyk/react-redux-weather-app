@@ -11,13 +11,12 @@ import PropTypes from "prop-types";
 
 export class CurrentForecast extends Component {
     renderTemplate() {
-        
         const { name, dt, main, wind, weather } = this.props.forecastData;
 
         const setIconClassName = `weather-icon-current ${generateIconClass(
             weather[0].icon
         )}`;
-        
+
         return (
             <div className="forecast-current">
                 <div className="city-name">{name}</div>

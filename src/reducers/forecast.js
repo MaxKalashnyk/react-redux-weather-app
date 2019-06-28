@@ -6,26 +6,26 @@ import {
 
 export const initialState = {
     data: null,
-    isFetching: false,
-    error: ""
+    isFetching: false
 };
 
 export function forecastReducer(state = initialState, action) {
+    console.log(action.type);
+
     switch (action.type) {
         case REQUEST:
-            return { ...state, isFetching: true, error: "" };
+            return { ...state, isFetching: true };
         case REQUEST_SUCCESS:
             return {
                 ...state,
                 isFetching: false,
-                data: action.payload,
-                error: ""
+                data: action.payload
             };
         case REQUEST_FAIL:
             return {
                 ...state,
                 isFetching: false,
-                error: action.payload.message
+                data: null
             };
         default:
             return state;
