@@ -8,7 +8,7 @@ import { currentForecastReducer } from "./currentForecast";
 export const rootReducer = combineReducers({
     units: unitsReducer,
     place: placeReducer,
-    themeColor: themeColorReducer,
+    color: themeColorReducer,
     forecastData: forecastReducer,
     currentForecastData: currentForecastReducer
 });

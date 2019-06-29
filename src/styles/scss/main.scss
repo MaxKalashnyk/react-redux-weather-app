@@ -6,20 +6,54 @@
 
 /* custom styles */
 
+:root {
+    --primaryBackground: #1e272e;
+    --primaryTextColor: #f7f1e3;
+    --primaryBackgroundBlue: #5352ed;
+    --primaryTextColorBlue: #dfe4ea;
+    --primaryBackgroundYellow: #ffa502;
+    --primaryTextColorYellow: #f1f2f6;
+    @include transition(all);
+}
+
+// // dark theme
+// html[data-theme="blue"] {
+//     --primaryBackground: #7f8fa6;
+//     --primaryTextColor: #273c75;
+// }
+
+// html[data-theme="yellow"] {
+//     --primaryBackground: #fbc531;
+//     --primaryTextColor: #487eb0;
+// }
+
 html {
+    // background-color: var(--primaryBackground);
+    // color: var(--primaryTextColor);
     @include mediaQuery(400) {
         font-size: 12px;
     }
 }
 
-body {
-    background-color: $backgroundColor;
-    padding: 0 15px;
+.App {
+    background-color: var(--primaryBackground);
+    color: var(--primaryTextColor);
+    @include transition(all);
+    min-height: 100vh;
+    padding: 0 15px 20px;
+}
+.App.blue {
+    background-color: var(--primaryBackgroundBlue);
+    color: var(--primaryTextColorBlue);
+}
+.App.yellow {
+    background-color: var(--primaryBackgroundYellow);
+    color: var(--primaryTextColorYellow);
 }
 
-.main {
-    padding-bottom: 2em;
-}
+// .main {
+//     padding-bottom: 2em;
+// }
 
 .app-container {
     max-width: 800px;
@@ -28,8 +62,8 @@ body {
 
 .main-title {
     text-align: center;
-    margin-bottom: 30px;
-    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
     font-size: 3em;
 }
 
@@ -160,7 +194,8 @@ body {
 }
 
 .forecast-item:last-child {
-    @include mediaQuery(600) {}
+    @include mediaQuery(600) {
+    }
 }
 
 .forecast-current {
@@ -282,7 +317,7 @@ body {
     }
 }
 
-.forecast-nearest-days>div {
+.forecast-nearest-day-item {
     height: 150px;
     flex-grow: 1;
     align-items: center;
@@ -305,30 +340,6 @@ body {
         margin-bottom: 20px;
         flex-grow: 0;
     }
-}
-
-// .forecast-nearest-day-item {
-//     flex-grow: 1;
-//     align-items: center;
-//     justify-content: center;
-//     height: 100%;
-//     display: flex;
-//     flex-direction: column;
-//     border-radius: 5px;
-//     margin-left: 10px;
-//     background-color: rgba(255, 255, 255, 0.1);
-//     cursor: pointer;
-//     @include transition(background-color);
-//     &:hover {
-//         background-color: rgba(255, 255, 255, 0.3);
-//     }
-// }
-
-.forecast-nearest-day-item {
-    width: 100%;
-    height: 100%;
-    padding-top: 1.5em;
-    text-align: center;
 }
 
 .day-forecast-weather {
@@ -384,10 +395,10 @@ body {
     }
 }
 
-.user-activity-wrap>div {
+.user-activity-item {
     width: 50%;
     margin-left: 20px;
-    padding: 20px;
+    padding: 20px 20px 0;
     border-radius: $borderRadius;
     background-color: $backgroundItem;
 
@@ -406,17 +417,6 @@ body {
         margin-left: 0;
     }
 }
-
-// .user-activity-item {
-//     width: 50%;
-//     margin-left: 20px;
-//     padding: 20px;
-//     border-radius: 5px;
-//     &:last-child {
-//         margin-right: 0;
-//     }
-//     background-color: rgba(255, 255, 255, 0.1);
-// }
 
 .user-activity-title {
     text-transform: uppercase;

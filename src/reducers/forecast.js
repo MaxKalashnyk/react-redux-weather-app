@@ -10,7 +10,6 @@ export const initialState = {
 };
 
 export function forecastReducer(state = initialState, action) {
-    console.log(action.type);
 
     switch (action.type) {
         case REQUEST:

@@ -1,7 +1,12 @@
 export const initialState = {
-    color: "Dark"
+    color: "dark"
 };
 
-export function themeColorReducer(state = initialState) {
-    return state;
+export function themeColorReducer(state = initialState, action) {
+    switch (action.type) {
+        case "SET_THEME_COLOR":
+            return { ...state, color: action.payload };
+        default:
+            return state;
+    }
 }
