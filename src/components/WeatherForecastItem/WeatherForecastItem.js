@@ -7,9 +7,9 @@ import PropTypes from "prop-types";
 
 export class WeatherForecastItem extends Component {
     render() {
-        console.log("itemForecast", this.props);
+        // console.log("itemForecast", this.props);
 
-        const { place, forecastData } = this.props;
+        const { forecastData } = this.props;
 
         const setIconClassName = `day-forecast-weather ${generateIconClass(
             forecastData.weather[0].icon

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import uuid from "uuid";
 import "./ThemeColorSwitcher.scss";
+import PropTypes from "prop-types";
 
 export class ThemeColorSwitcher extends Component {
     changeColorThemeHandler({ target }) {
@@ -42,3 +43,8 @@ export class ThemeColorSwitcher extends Component {
 }
 
 export default ThemeColorSwitcher;
+
+ThemeColorSwitcher.propTypes = {
+    handleThemeColorChange: PropTypes.func.isRequired,
+    color: PropTypes.string
+};

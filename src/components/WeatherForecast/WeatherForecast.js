@@ -140,8 +140,6 @@ export default connect(
     mapDispatchToProps
 )(WeatherForecast);
 
-// export default WeatherForecast;
-
 WeatherForecast.propTypes = {
     data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     error: PropTypes.string,

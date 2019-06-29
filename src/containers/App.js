@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SearchBar } from "../components/Searchbar";
 import { WeatherForecast } from "../components/WeatherForecast";
-import { UserActions } from "../components/UserActions";
+import { HistoryList } from "../components/HistoryList";
+import { FavouritesList } from "../components/FavouritesList";
 import { ThemeColorSwitcher } from "../components/ThemeColorSwitcher";
 import { setPlace } from "../actions/placeAction";
 import { handleForecastData } from "../actions/forecastDataAction";
 import { updateCurrentForecast } from "../actions/updateCurrentForecast";
 import { setThemeColor } from "../actions/themeColorAction";
+import { updateHistoryList } from "../actions/updateHistoryList";
 import "../styles/scss/main.scss";
 
 class App extends Component {
@@ -17,9 +19,11 @@ class App extends Component {
             getForecastDataAction,
             forecastData,
             place,
-            setCurrentForecast,
-            setThemeColor,
-            themeColor
+            setCurrentForecastAction,
+            setThemeColorAction,
+            themeColor,
+            updateHistoryListAction,
+            historyList
         } = this.props;
 
         // console.log(this.props);
@@ -32,12 +36,13 @@ class App extends Component {
                     <div className="app-container">
                         <h1 className="main-title">Weather application</h1>
                         <ThemeColorSwitcher
-                            handleThemeColorChange={setThemeColor}
+                            handleThemeColorChange={setThemeColorAction}
                             color={themeColor}
                         ></ThemeColorSwitcher>
                         <SearchBar
                             handleForecastData={getForecastDataAction}
-                            handleCurrentForecastData={setCurrentForecast}
+                            handleCurrentForecastData={setCurrentForecastAction}
+                            handleHistoryList={updateHistoryListAction}
                             place={setPlaceAction}
                         ></SearchBar>
                         <WeatherForecast
@@ -45,7 +50,12 @@ class App extends Component {
                             isFetching={forecastData.isFetching}
                             place={place}
                         ></WeatherForecast>
-                        <UserActions></UserActions>
+                        <div className="user-activity-wrap">
+                            <FavouritesList></FavouritesList>
+                            <HistoryList
+                                historyList={historyList}
+                            ></HistoryList>
+                        </div>
                     </div>
                 </main>
             </div>
@@ -54,13 +64,14 @@ class App extends Component {
 }
 
 const mapStateToProps = store => {
-    console.log(store);
+    // console.log(store);
     return {
         // isFavourite: store.search.isFavourite,
         // unit: store.unit,
         themeColor: store.color.color,
         forecastData: store.forecastData,
-        place: store.place.place
+        place: store.place.place,
+        historyList: store.historyList.data
     };
 };
 
@@ -68,8 +79,10 @@ const mapDispatchToProps = dispatch => {
     return {
         setPlaceAction: place => dispatch(setPlace(place)),
         getForecastDataAction: city => dispatch(handleForecastData(city)),
-        setCurrentForecast: data => dispatch(updateCurrentForecast(data)),
-        setThemeColor: color => dispatch(setThemeColor(color))
+        setCurrentForecastAction: data => dispatch(updateCurrentForecast(data)),
+        setThemeColorAction: color => dispatch(setThemeColor(color)),
+        updateHistoryListAction: historyList =>
+            dispatch(updateHistoryList(historyList))
     };
 };
 
