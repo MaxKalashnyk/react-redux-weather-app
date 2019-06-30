@@ -16,20 +16,7 @@
     @include transition(all);
 }
 
-// // dark theme
-// html[data-theme="blue"] {
-//     --primaryBackground: #7f8fa6;
-//     --primaryTextColor: #273c75;
-// }
-
-// html[data-theme="yellow"] {
-//     --primaryBackground: #fbc531;
-//     --primaryTextColor: #487eb0;
-// }
-
 html {
-    // background-color: var(--primaryBackground);
-    // color: var(--primaryTextColor);
     @include mediaQuery(400) {
         font-size: 12px;
     }
@@ -50,10 +37,6 @@ html {
     background-color: var(--primaryBackgroundYellow);
     color: var(--primaryTextColorYellow);
 }
-
-// .main {
-//     padding-bottom: 2em;
-// }
 
 .app-container {
     max-width: 800px;
@@ -87,6 +70,7 @@ html {
     background-size: 25px;
     color: $text;
     @include transition(background-color);
+    font-family: $default-font;
 
     &:hover {
         background-color: $backgroundItemHover;

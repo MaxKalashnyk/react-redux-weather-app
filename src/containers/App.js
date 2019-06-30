@@ -23,7 +23,8 @@ class App extends Component {
             setThemeColorAction,
             themeColor,
             updateHistoryListAction,
-            historyList
+            historyList,
+            favouritesList
         } = this.props;
 
         // console.log(this.props);
@@ -51,7 +52,9 @@ class App extends Component {
                             place={place}
                         ></WeatherForecast>
                         <div className="user-activity-wrap">
-                            <FavouritesList></FavouritesList>
+                            <FavouritesList
+                                favouritesList={favouritesList}
+                            ></FavouritesList>
                             <HistoryList
                                 historyList={historyList}
                             ></HistoryList>
@@ -71,7 +74,8 @@ const mapStateToProps = store => {
         themeColor: store.color.color,
         forecastData: store.forecastData,
         place: store.place.place,
-        historyList: store.historyList.data
+        historyList: store.historyList.data,
+        favouritesList: store.favouritesList.data
     };
 };
 

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Autocomplete from "react-google-autocomplete";
 import { connect } from "react-redux";
+import { FavouritesButton } from "../FavouritesButton";
+import { UnitsSwitcher } from "../UnitsSwitcher";
+import { setPlace } from "../../actions/placeAction";
 import PropTypes from "prop-types";
 
 export class SearchBar extends Component {
@@ -8,32 +11,46 @@ export class SearchBar extends Component {
         super(props);
         this.inputRef = React.createRef();
         this.checkPlaceInHistoryList = this.checkPlaceInHistoryList.bind(this);
+        this.placeInfo = {};
     }
 
     getDataStatusCode = data =>
         data.data ? data.data[0].cod.toString() : null;
 
     checkPlaceInHistoryList(place) {
-        const currentHistoryList = this.props.historyList;
-        const matchedItem = currentHistoryList.find(
+        const { historyList } = this.props;
+        const matchedItem = historyList.find(
             item => item.placeId === place.placeId
         );
-        const { formatted_address, place_id } = place;
 
         if (!matchedItem) {
-            const placeObj = {
-                place: place.address_components[0].long_name,
-                formattedPlace: formatted_address,
-                placeId: place_id
-            };
-            currentHistoryList.push(placeObj);
-            this.props.handleHistoryList(currentHistoryList);
+            historyList.push(place);
+            this.props.handleHistoryList(historyList);
+        }
+    }
+
+    checkPlaceInFavouritesList(place) {
+        const { favouritesList } = this.props;
+        const matchedItem = favouritesList.find(
+            item => item.placeId === place.placeId
+        );
+
+        if (matchedItem) {
+            const updatedFavPlaceObj = Object.assign(place, {
+                isFavourite: true
+            });
+
+            this.props.place(updatedFavPlaceObj);
+        } else {
+            const updatedFavPlaceObj = Object.assign(place, {
+                isFavourite: false
+            });
+            this.props.place(updatedFavPlaceObj);
         }
     }
 
     performSearch(place) {
         const formattedPlaceName = place.formatted_address.split(",")[0];
-        this.props.place(formattedPlaceName);
         this.props.handleForecastData(formattedPlaceName);
         this.props.handleCurrentForecastData(null);
 
@@ -47,28 +64,38 @@ export class SearchBar extends Component {
         //     this.checkPlaceInHistoryList(place);
         // }
 
-        this.checkPlaceInHistoryList(place);
+        const { formatted_address, place_id } = place;
+
+        const placeObj = {
+            place: place.address_components[0].long_name,
+            formattedPlace: formatted_address,
+            placeId: place_id
+        };
+
+        this.checkPlaceInHistoryList(placeObj);
+        this.checkPlaceInFavouritesList(placeObj);
 
         this.inputRef.current.refs.input.value = "";
         // console.log(this.props);
     }
 
     render() {
-        // console.log(this.props);
+
+        const { setPlaceAction } = this.props;
 
         return (
             <div className="search-block">
-                <button className="add-to-favourite" />
+                <FavouritesButton
+                    place={this.placeInfo}
+                    updateButtonClass={setPlaceAction}
+                ></FavouritesButton>
                 <Autocomplete
                     className="main-search-input"
                     onPlaceSelected={this.performSearch.bind(this)}
                     autoFocus
                     ref={this.inputRef}
                 />
-                <select className="temperature-units">
-                    <option value="Celsius">°C</option>
-                    <option value="Farengheit">°F</option>
-                </select>
+                <UnitsSwitcher></UnitsSwitcher>
             </div>
         );
     }
@@ -77,11 +104,21 @@ export class SearchBar extends Component {
 const mapStateToProps = store => {
     // console.log(store);
     return {
-        historyList: store.historyList.data
+        historyList: store.historyList.data,
+        favouritesList: store.favouritesList.data
     };
 };
 
-export default connect(mapStateToProps)(SearchBar);
+const mapDispatchToProps = dispatch => {
+    return {
+        setPlaceAction: place => dispatch(setPlace(place))
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SearchBar);
 
 SearchBar.propTypes = {
     handleForecastData: PropTypes.func.isRequired,

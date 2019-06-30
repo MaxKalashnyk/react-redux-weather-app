@@ -79,7 +79,7 @@ export class WeatherForecast extends Component {
                   return (
                       <WeatherForecastItem
                           forecastData={item}
-                          place={place}
+                          place={place.place}
                           key={uuid.v4()}
                           updateHandler={setCurrentForecast}
                       ></WeatherForecastItem>
