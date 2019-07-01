@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HistoryListItem } from "../HistoryListItem";
+import { ActivityListItem } from "../ActivityListItem";
 import uuid from "uuid";
 import PropTypes from "prop-types";
 
@@ -7,11 +7,11 @@ export class HistoryList extends Component {
     renderHistoryItemsList() {
         const historyList = this.props.historyList;
         return historyList.map(item => (
-            <HistoryListItem
+            <ActivityListItem
                 place={item.place}
                 formattedPlace={item.formattedPlace}
                 key={uuid.v4()}
-            ></HistoryListItem>
+            ></ActivityListItem>
         ));
     }
 

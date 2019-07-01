@@ -5,7 +5,7 @@ import { handleForecastData } from "../../actions/forecastDataAction";
 import { setPlace } from "../../actions/placeAction";
 import PropTypes from "prop-types";
 
-export class HistoryListItem extends Component {
+export class ActivityListItem extends Component {
     updateForecast({ target }) {
         const placeName = target.dataset.place;
         store.dispatch(handleForecastData(placeName));
@@ -53,9 +53,9 @@ const mapStateToProps = store => {
     };
 };
 
-export default connect(mapStateToProps)(HistoryListItem);
+export default connect(mapStateToProps)(ActivityListItem);
 
-HistoryListItem.propTypes = {
+ActivityListItem.propTypes = {
     place: PropTypes.string.isRequired,
     formattedPlace: PropTypes.string.isRequired
 };
