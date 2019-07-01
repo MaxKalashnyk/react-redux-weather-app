@@ -8,7 +8,6 @@ import { ThemeColorSwitcher } from "../components/ThemeColorSwitcher";
 import { setPlace } from "../actions/placeAction";
 import { handleForecastData } from "../actions/forecastDataAction";
 import { updateCurrentForecast } from "../actions/updateCurrentForecast";
-import { setThemeColor } from "../actions/themeColorAction";
 import { updateHistoryList } from "../actions/updateHistoryList";
 import "../styles/scss/main.scss";
 
@@ -20,7 +19,6 @@ class App extends Component {
             forecastData,
             place,
             setCurrentForecastAction,
-            setThemeColorAction,
             themeColor,
             updateHistoryListAction,
             historyList,
@@ -29,17 +27,12 @@ class App extends Component {
 
         // console.log(this.props);
 
-        const themeColorClass = this.props.themeColor;
-
         return (
-            <div className={`App ${themeColorClass}`}>
+            <div className={`App ${themeColor}`}>
                 <main className="main">
                     <div className="app-container">
                         <h1 className="main-title">Weather application</h1>
-                        <ThemeColorSwitcher
-                            handleThemeColorChange={setThemeColorAction}
-                            color={themeColor}
-                        ></ThemeColorSwitcher>
+                        <ThemeColorSwitcher></ThemeColorSwitcher>
                         <SearchBar
                             handleForecastData={getForecastDataAction}
                             handleCurrentForecastData={setCurrentForecastAction}
@@ -69,7 +62,6 @@ class App extends Component {
 const mapStateToProps = store => {
     // console.log(store);
     return {
-        // isFavourite: store.search.isFavourite,
         // unit: store.unit,
         themeColor: store.color.color,
         forecastData: store.forecastData,
@@ -84,7 +76,6 @@ const mapDispatchToProps = dispatch => {
         setPlaceAction: place => dispatch(setPlace(place)),
         getForecastDataAction: city => dispatch(handleForecastData(city)),
         setCurrentForecastAction: data => dispatch(updateCurrentForecast(data)),
-        setThemeColorAction: color => dispatch(setThemeColor(color)),
         updateHistoryListAction: historyList =>
             dispatch(updateHistoryList(historyList))
     };

@@ -19,7 +19,7 @@ export class WeatherForecast extends Component {
         // console.log(this.props);
 
         const { currentForecastData } = currentForecast;
-        const dataCode = data ? data[0].cod : null;
+        const dataCode = data ? +data[0].cod : null;
 
         const createSortedList = list => {
             const hoursForecastList = [];
@@ -34,14 +34,16 @@ export class WeatherForecast extends Component {
 
         const renderCurrentForecast = () => {
             if (data) {
-                if (dataCode !== "404") {
+                if (dataCode <= 400) {
                     return (
                         <CurrentForecast
                             forecastData={data ? data[0] : null}
                         ></CurrentForecast>
                     );
-                } else {
+                } else if (dataCode === 404) {
                     return <p>City not found!</p>;
+                } else {
+                    return <p>There is some problems with API</p>;
                 }
             } else {
                 return "";
@@ -89,7 +91,7 @@ export class WeatherForecast extends Component {
 
         const renderForecastDaysList = () => {
             if (data) {
-                if (dataCode !== "404") {
+                if (dataCode <= 400) {
                     return (
                         <div className="forecast-nearest-days">
                             {weatherForecastItemsList}

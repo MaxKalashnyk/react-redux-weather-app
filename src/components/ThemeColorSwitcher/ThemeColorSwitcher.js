@@ -1,12 +1,14 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { store } from "../../store/configureStore";
+import { setThemeColor } from "../../actions/themeColorAction";
 import uuid from "uuid";
 import "./ThemeColorSwitcher.scss";
-import PropTypes from "prop-types";
 
 export class ThemeColorSwitcher extends Component {
     changeColorThemeHandler({ target }) {
         const { value } = target;
-        this.props.handleThemeColorChange(value);
+        store.dispatch(setThemeColor(value));
     }
 
     renderTemplate() {
@@ -42,9 +44,4 @@ export class ThemeColorSwitcher extends Component {
     }
 }
 
-export default ThemeColorSwitcher;
-
-ThemeColorSwitcher.propTypes = {
-    handleThemeColorChange: PropTypes.func.isRequired,
-    color: PropTypes.string
-};
+export default connect()(ThemeColorSwitcher);
