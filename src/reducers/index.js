@@ -8,7 +8,7 @@ import { historyListReducer } from "./historyList";
 import { favouritesListReducer } from "./favouritesList";
 
 export const rootReducer = combineReducers({
-    units: unitsReducer,
+    unit: unitsReducer,
     place: placeReducer,
     color: themeColorReducer,
     forecastData: forecastReducer,

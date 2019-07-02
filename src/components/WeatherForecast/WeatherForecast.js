@@ -145,5 +145,6 @@ export default connect(
 WeatherForecast.propTypes = {
     data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     error: PropTypes.string,
-    isFetching: PropTypes.bool
+    isFetching: PropTypes.bool,
+    unit: PropTypes.string.isRequired
 };

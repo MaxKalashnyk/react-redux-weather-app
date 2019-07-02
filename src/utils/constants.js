@@ -143,6 +143,11 @@ export const generateID = () => {
 
 export const colorsList = ["dark", "blue", "yellow"];
 
+export const unitsList = [
+    { name: "Metric", degreesUnit: "°C" },
+    { name: "Imperial", degreesUnit: "°F" }
+];
+
 export const getDayFromDateString = (milliseconds, type = "long") => {
     return new Intl.DateTimeFormat("en-US", { weekday: type }).format(
         milliseconds * 1000

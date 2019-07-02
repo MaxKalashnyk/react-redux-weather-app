@@ -15,23 +15,21 @@ export class ThemeColorSwitcher extends Component {
     renderTemplate() {
         const { themeColor } = this.props;
 
-        return colorsList.map(color => {
-            return (
-                <div className="color-switcher__item" key={generateID()}>
-                    <label className="color-switcher-label">
-                        <input
-                            type="radio"
-                            name="color"
-                            value={color}
-                            className="color-switcher-input hidden-input"
-                            onChange={this.changeColorThemeHandler.bind(this)}
-                            checked={color === themeColor}
-                        />
-                        <span className="color-switcher-name">{color}</span>
-                    </label>
-                </div>
-            );
-        });
+        return colorsList.map(color => (
+            <div className="color-switcher__item" key={generateID()}>
+                <label className="color-switcher-label">
+                    <input
+                        type="radio"
+                        name="color"
+                        value={color}
+                        className="color-switcher-input hidden-input"
+                        onChange={this.changeColorThemeHandler.bind(this)}
+                        checked={color === themeColor}
+                    />
+                    <span className="color-switcher-name">{color}</span>
+                </label>
+            </div>
+        ));
     }
 
     render() {
