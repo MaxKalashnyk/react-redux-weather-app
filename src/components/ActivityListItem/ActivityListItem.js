@@ -6,14 +6,16 @@ import { setPlace } from "../../actions/placeAction";
 import PropTypes from "prop-types";
 
 export class ActivityListItem extends Component {
-    updateForecast({ target }) {
-        const placeName = target.dataset.place;
-        store.dispatch(handleForecastData(placeName));
-        this.checkPlaceInFavouritesList(placeName);
+    updateForecast() {
+        const placeObj = this.props.place;
+        const { place } = placeObj;
+        store.dispatch(handleForecastData(place));
+        this.checkPlaceInFavouritesList(placeObj);
     }
 
     checkPlaceInFavouritesList(place) {
         const { favouritesList } = this.props;
+
         const matchedItem = favouritesList.find(
             item => item.placeId === place.placeId
         );
@@ -33,15 +35,14 @@ export class ActivityListItem extends Component {
     }
 
     render() {
-        const { place } = this.props;
+        const { formattedPlace } = this.props.place;
 
         return (
             <li
                 className="user-activity-list-item"
-                data-place={place}
                 onClick={this.updateForecast.bind(this)}
             >
-                {this.props.formattedPlace}
+                {formattedPlace}
             </li>
         );
     }
@@ -56,6 +57,5 @@ const mapStateToProps = store => {
 export default connect(mapStateToProps)(ActivityListItem);
 
 ActivityListItem.propTypes = {
-    place: PropTypes.string.isRequired,
-    formattedPlace: PropTypes.string.isRequired
+    place: PropTypes.object.isRequired
 };

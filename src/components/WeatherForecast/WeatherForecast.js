@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { CurrentForecast } from "../CurrentForecast";
 import { WeatherForecastItem } from "../WeatherForecastItem";
-import uuid from "uuid";
+import { generateID } from "../../utils/constants";
 import { connect } from "react-redux";
 import { updateCurrentForecast } from "../../actions/updateCurrentForecast";
 import PropTypes from "prop-types";
@@ -82,7 +82,7 @@ export class WeatherForecast extends Component {
                       <WeatherForecastItem
                           forecastData={item}
                           place={place.place}
-                          key={uuid.v4()}
+                          key={generateID()}
                           updateHandler={setCurrentForecast}
                       ></WeatherForecastItem>
                   );

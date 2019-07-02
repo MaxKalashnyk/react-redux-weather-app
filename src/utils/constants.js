@@ -141,6 +141,8 @@ export const generateID = () => {
     );
 };
 
+export const colorsList = ["dark", "blue", "yellow"];
+
 export const getDayFromDateString = (milliseconds, type = "long") => {
     return new Intl.DateTimeFormat("en-US", { weekday: type }).format(
         milliseconds * 1000
@@ -165,10 +167,6 @@ export const convertWindUnits = (value, units) => {
     return units === "C"
         ? `${value.toFixed(1)} m/s`
         : `${(value * coefficientImperial).toFixed(1)} mph`;
-};
-
-export const putItemToLocalStorage = (key, list) => {
-    localStorage.setItem(key, JSON.stringify(list));
 };
 
 export const checkResponse = response => {

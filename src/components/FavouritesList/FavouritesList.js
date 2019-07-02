@@ -1,20 +1,35 @@
 import React, { Component } from "react";
+import { store } from "../../store/configureStore";
 import { ActivityListItem } from "../ActivityListItem";
-import uuid from "uuid";
+import { updateFavouritesList } from "../../actions/updateFavouritesList";
+import { generateID } from "../../utils/constants";
 import PropTypes from "prop-types";
+import PerfectScrollbar from "perfect-scrollbar";
 
 export class FavouritesList extends Component {
+    constructor(props) {
+        super(props);
+        this.favouritesListRef = React.createRef();
+    }
+
+    componentDidMount() {
+        new PerfectScrollbar(this.favouritesListRef.current);
+    }
+
     renderFavouritesList() {
-        // console.log(this.props);
         const { favouritesList } = this.props;
 
         return favouritesList.map(item => (
             <ActivityListItem
-                place={item.place}
-                formattedPlace={item.formattedPlace}
-                key={uuid.v4()}
+                place={item}
+                key={generateID()}
             ></ActivityListItem>
         ));
+    }
+
+    clearFavouritesList() {
+        const emptyList = [];
+        store.dispatch(updateFavouritesList(emptyList));
     }
 
     render() {
@@ -24,10 +39,16 @@ export class FavouritesList extends Component {
                     <h3 className="user-activity-title user-activity-title-fav">
                         favourite
                     </h3>
-                    <button className="remove-button" />
+                    <button
+                        className="remove-button"
+                        onClick={this.clearFavouritesList}
+                    />
                 </div>
                 <div className="user-activity-content">
-                    <ul className="user-activity-list">
+                    <ul
+                        className="user-activity-list"
+                        ref={this.favouritesListRef}
+                    >
                         {this.renderFavouritesList()}
                     </ul>
                 </div>

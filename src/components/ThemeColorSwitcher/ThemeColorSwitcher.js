@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { store } from "../../store/configureStore";
 import { setThemeColor } from "../../actions/themeColorAction";
-import uuid from "uuid";
+import { generateID } from "../../utils/constants";
+import { colorsList } from "../../utils/constants";
 import "./ThemeColorSwitcher.scss";
 
 export class ThemeColorSwitcher extends Component {
@@ -12,12 +13,11 @@ export class ThemeColorSwitcher extends Component {
     }
 
     renderTemplate() {
-        const colorsList = ["dark", "blue", "yellow"];
-        // console.log(this.props);
+        const { themeColor } = this.props;
 
         return colorsList.map(color => {
             return (
-                <div className="color-switcher__item" key={uuid.v4()}>
+                <div className="color-switcher__item" key={generateID()}>
                     <label className="color-switcher-label">
                         <input
                             type="radio"
@@ -25,7 +25,7 @@ export class ThemeColorSwitcher extends Component {
                             value={color}
                             className="color-switcher-input hidden-input"
                             onChange={this.changeColorThemeHandler.bind(this)}
-                            // {...(color === "Dark" ? { "defaultChecked" } : {})}
+                            checked={color === themeColor}
                         />
                         <span className="color-switcher-name">{color}</span>
                     </label>
@@ -44,4 +44,10 @@ export class ThemeColorSwitcher extends Component {
     }
 }
 
-export default connect()(ThemeColorSwitcher);
+const mapStateToProps = store => {
+    return {
+        themeColor: store.color.color
+    };
+};
+
+export default connect(mapStateToProps)(ThemeColorSwitcher);

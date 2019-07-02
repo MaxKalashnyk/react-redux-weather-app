@@ -8,7 +8,7 @@ export const initialState = {
 export function placeReducer(state = initialState, action) {
     switch (action.type) {
         case "SET_PLACE":
-            // console.log(action.payload);
+            console.log(action.payload);        
             return Object.assign({ ...state }, action.payload);
         default:
             return state;
