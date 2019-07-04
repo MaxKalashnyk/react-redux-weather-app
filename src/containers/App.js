@@ -22,8 +22,7 @@ class App extends Component {
             themeColor,
             updateHistoryListAction,
             historyList,
-            favouritesList,
-            unit
+            favouritesList
         } = this.props;
 
         // console.log(this.props);
@@ -44,7 +43,6 @@ class App extends Component {
                             data={forecastData.data}
                             isFetching={forecastData.isFetching}
                             place={place}
-                            unit={unit}
                         ></WeatherForecast>
                         <div className="user-activity-wrap">
                             <FavouritesList
@@ -64,7 +62,6 @@ class App extends Component {
 const mapStateToProps = store => {
     // console.log(store);
     return {
-        unit: store.unit.unit,
         themeColor: store.color.color,
         forecastData: store.forecastData,
         place: store.place.place,

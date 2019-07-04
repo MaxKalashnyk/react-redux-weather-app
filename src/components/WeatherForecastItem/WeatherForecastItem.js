@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { formatDateValue } from "../../utils/constants";
 import { generateIconClass } from "../../utils/constants";
 import { getDayFromDateString } from "../../utils/constants";
@@ -7,10 +8,7 @@ import PropTypes from "prop-types";
 
 export class WeatherForecastItem extends Component {
     render() {
-        // console.log("itemForecast", this.props);
-
-        const { forecastData } = this.props;
-
+        const { forecastData, unit } = this.props;
         const setIconClassName = `day-forecast-weather ${generateIconClass(
             forecastData.weather[0].icon
         )}`;
@@ -27,7 +25,7 @@ export class WeatherForecastItem extends Component {
                     {getDayFromDateString(forecastData.dt, "short")}
                 </div>
                 <div className="day-forecast-temp">
-                    {convertTemperatureUnits(forecastData.main.temp, "C")}
+                    {convertTemperatureUnits(forecastData.main.temp, unit)}
                 </div>
                 <div className={setIconClassName} />
             </div>
@@ -35,7 +33,13 @@ export class WeatherForecastItem extends Component {
     }
 }
 
-export default WeatherForecastItem;
+const mapStateToProps = store => {
+    return {
+        unit: store.unit.unit
+    };
+};
+
+export default connect(mapStateToProps)(WeatherForecastItem);
 
 WeatherForecastItem.propTypes = {
     forecastData: PropTypes.object,

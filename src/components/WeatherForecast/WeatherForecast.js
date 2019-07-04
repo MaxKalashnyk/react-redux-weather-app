@@ -16,8 +16,6 @@ export class WeatherForecast extends Component {
             setCurrentForecast
         } = this.props;
 
-        // console.log(this.props);
-
         const { currentForecastData } = currentForecast;
         const dataCode = data ? +data[0].cod : null;
 
@@ -125,7 +123,6 @@ export class WeatherForecast extends Component {
 }
 
 const mapStateToProps = store => {
-    // console.log(store);
     return {
         currentForecast: store.currentForecastData
     };
@@ -145,6 +142,5 @@ export default connect(
 WeatherForecast.propTypes = {
     data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     error: PropTypes.string,
-    isFetching: PropTypes.bool,
-    unit: PropTypes.string.isRequired
+    isFetching: PropTypes.bool
 };

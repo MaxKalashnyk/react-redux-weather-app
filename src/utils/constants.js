@@ -159,7 +159,7 @@ export const convertTemperatureUnits = (value, units) => {
         return;
     }
 
-    return units === "C"
+    return units === "Metric"
         ? `${Math.round(value)} °C`
         : `${Math.round(value * 1.8 + 32)} °F`;
 };
