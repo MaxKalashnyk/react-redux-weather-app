@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { store } from "../../store/configureStore";
-import { handleForecastData } from "../../actions/forecastDataAction";
-import { setPlace } from "../../actions/placeAction";
+import { handleForecastData } from "../../actions/forecastData";
+import { setPlace } from "../../actions/place";
 import PropTypes from "prop-types";
 
 export class ActivityListItem extends Component {

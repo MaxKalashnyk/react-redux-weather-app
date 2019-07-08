@@ -2,7 +2,7 @@ import {
     REQUEST,
     REQUEST_SUCCESS,
     REQUEST_FAIL
-} from "../actions/forecastDataAction";
+} from "../actions/forecastData";
 
 export const initialState = {
     data: null,

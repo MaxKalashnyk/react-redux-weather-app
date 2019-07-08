@@ -169,7 +169,7 @@ export const convertWindUnits = (value, units) => {
         return "";
     }
 
-    return units === "C"
+    return units === "Metric"
         ? `${value.toFixed(1)} m/s`
         : `${(value * coefficientImperial).toFixed(1)} mph`;
 };

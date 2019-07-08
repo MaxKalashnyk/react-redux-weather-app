@@ -3,7 +3,7 @@ import Autocomplete from "react-google-autocomplete";
 import { connect } from "react-redux";
 import { FavouritesButton } from "../FavouritesButton";
 import { UnitsSwitcher } from "../UnitsSwitcher";
-import { setPlace } from "../../actions/placeAction";
+import { setPlace } from "../../actions/place";
 import PropTypes from "prop-types";
 
 export class SearchBar extends Component {
@@ -54,16 +54,6 @@ export class SearchBar extends Component {
         this.props.handleForecastData(formattedPlaceName);
         this.props.handleCurrentForecastData(null);
 
-        // const { statusCode } = this.props;
-
-        // console.log(this.props);
-
-        // console.log(statusCode);
-
-        // if (statusCode && statusCode === "200") {
-        //     this.checkPlaceInHistoryList(place);
-        // }
-
         const { formatted_address, place_id } = place;
 
         const placeObj = {
@@ -76,11 +66,9 @@ export class SearchBar extends Component {
         this.checkPlaceInFavouritesList(placeObj);
 
         this.inputRef.current.refs.input.value = "";
-        // console.log(this.props);
     }
 
     render() {
-
         const { setPlaceAction } = this.props;
 
         return (
@@ -102,7 +90,6 @@ export class SearchBar extends Component {
 }
 
 const mapStateToProps = store => {
-    // console.log(store);
     return {
         historyList: store.historyList.data,
         favouritesList: store.favouritesList.data

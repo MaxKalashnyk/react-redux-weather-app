@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { SearchBar } from "../components/Searchbar";
-import { setPlace } from "../actions/placeAction";
-import { handleForecastData } from "../actions/forecastDataAction";
+import { setPlace } from "../actions/place";
+import { handleForecastData } from "../actions/forecastData";
 import { updateCurrentForecast } from "../actions/updateCurrentForecast";
 import { updateHistoryList } from "../actions/updateHistoryList";
 
