@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { store } from "../../store/configureStore";
-import { setUnit } from "../../actions/unitAction";
+import { setUnit } from "../../actions/unit";
 import { generateID } from "../../utils/constants";
 import { unitsList } from "../../utils/constants";
 

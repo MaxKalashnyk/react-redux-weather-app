@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { store } from "../../store/configureStore";
-import { setThemeColor } from "../../actions/themeColorAction";
+import { setThemeColor } from "../../actions/themeColor";
 import { generateID } from "../../utils/constants";
 import { colorsList } from "../../utils/constants";
 import "./ThemeColorSwitcher.scss";

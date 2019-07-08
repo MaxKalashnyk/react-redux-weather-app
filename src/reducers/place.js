@@ -1,3 +1,5 @@
+import { SET_PLACE } from "../actions/place";
+
 export const initialState = {
     place: "Kyiv",
     placeId: "",
@@ -7,7 +9,7 @@ export const initialState = {
 
 export function placeReducer(state = initialState, action) {
     switch (action.type) {
-        case "SET_PLACE":
+        case SET_PLACE:
             return Object.assign({ ...state }, action.payload);
         default:
             return state;

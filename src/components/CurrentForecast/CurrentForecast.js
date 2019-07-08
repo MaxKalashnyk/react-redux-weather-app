@@ -35,7 +35,8 @@ export class CurrentForecast extends Component {
                         </div>
                         <div className="forecast-item-text forecast-item-text-icon forecast-item-text-icon-wind">
                             {`${convertWindUnits(
-                                wind.speed
+                                wind.speed,
+                                unit
                             )}, ${defineWindDirection(wind.deg)}`}
                         </div>
 
